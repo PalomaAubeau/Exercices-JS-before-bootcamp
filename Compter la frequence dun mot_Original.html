@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body> 
+    <div>
+    </div>
+
+    <script>
+
+        const phrase = `La vie, ce n'est pas d'attendre que les orages passent, c'est d'apprendre à danser sous la pluie.`
+        console.log(phrase)
+        // calculer la fréquense de mots dans une chaine de caractères
+        // Créer un objet qui contiendra les mots en clé, et leur fréquence en propriété
+        // Ensuite on verra comment ne pas prendre les symboles
+        
+        const frequencies = {};
+        const mots = phrase
+            .toLowerCase()
+            .replaceAll(',','')
+            .replaceAll(`'`,' ')
+            .split(' ');
+            
+     
+        for(let mot of mots){ // on compte le nombre de fois où les mots arrivent
+            if (mot !== ''){
+                if (frequencies[mot]) {
+                    frequencies[mot]++
+                } else {
+                    frequencies[mot] = 1
+                }
+            }
+        }
+         // on veut trier les mots selon leur fréquence. la méthode.sort ne marche que sur un tableau. On va créer un tableau et lui donner les indications d'ajout d'élément
+         const frequenciesArray = [];
+         for (let k in frequencies){
+            frequenciesArray.push({
+                word: k,
+                count: frequencies[k]
+            })
+         }
+
+        frequenciesArray.sort((a,b)=> b.count - a.count);
+        console.log(`Les mots les plus fréquents sont "${frequenciesArray[0].word}", "${frequenciesArray[1].word}","${frequenciesArray[2].word}"`);
+
+        //
+
+    </script>
+</body>
+
+
+</html>
