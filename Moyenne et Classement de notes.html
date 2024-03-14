@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body> 
+    <div>
+    </div>
+
+    <script>
+        const students = [
+            {
+                name: 'John',
+                notes: [1, 20, 18, 19, 12],
+            },
+            {
+                name: 'Jane',
+                notes: [17, 18, 20, 13, 15]
+            },
+            {
+                name: 'Sophie',
+                notes: [17, 12, 14, 15, 13]
+            },
+            {
+                name: 'Marc',
+                notes: [2, 3, 5, 8, 9]
+            },
+            {
+                name: 'Manon',
+                notes: [18, 17, 18, 19, 12]
+            },
+        ]
+
+        // calculer la moyenne
+        const calculateAverage = (notes) =>{
+            const sum = notes.reduce((acc,cur) => acc + cur, 0);
+            return sum / notes.length;
+        }
+        
+        // classer les élèves en fonction de leur moyenne
+        const classement = students.sort((a,b)=> calculateAverage(a.notes) > calculateAverage(b.notes)? -1: 1)
+
+        // afficher un top 3 des élèves en console
+        console.log(`Les trois meilleurs élèves sont: ${classement[0].name} , ${classement[1].name} , ${classement[2].name} `)
+        
+        /* Si on veut créer des nouvelles clé pour chaque élément du tableau, il y a plusieurs façons de faire:
+
+        PREMIERE FAÇON: créer un nouveau tableau comme une copie qu'on va modifier
+        const newTab = students.map((element) => {
+            return {
+                name: element.name,
+                notes: element.notes,
+                average: average(element.notes)
+            }
+        })
+        const classement = newTab.sort((a,b)=> a.average > b.average ? -1: 1)
+        
+        DEUXIEME FAÇON (BEAUCOUP PLUS SIMPLE // CORRECTION) = creer la fonction de comparaison, puis insérer l'average dans chaque élément du tableau avant d'appeler la fonction de compraison:
+        const classement = (a,b) =>{ return b.moyenne - a.moyenne}
+        
+        for(element of students){
+            element.average = calculeAverage(element.notes)
+            element.worst = Math.min(...element.notes)
+            element.best = Math.max (...element.notes)
+        }
+
+        students.sort(classement)
+        */
+    </script>
+</body>
+
+</html>
