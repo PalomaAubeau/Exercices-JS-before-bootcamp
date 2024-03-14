@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+	/* // AVEC setinterval()
+	function decompte(counter){
+		const interval = setInterval(() => {
+			console.log(counter)
+			counter --;
+			if (counter < 0){
+				clearInterval(interval); 
+			}
+		}, 1000);
+	}*/
+
+	// AVEC setTimeou()
+	function decompte(counter){
+		console.log(counter)
+		if (counter === 0){
+			return
+		}
+		setTimeout(() => {
+			decompte(counter -1)
+		},1000)
+	}
+
+	decompte(5)
+</script>
+</html>
