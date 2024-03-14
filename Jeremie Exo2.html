@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body> 
+    <div class="div">
+        <!-- EXO 1
+        <button class="Exo1">0</button>
+        -->
+
+        <!-- EXO 2
+        <button class="yes">YES</button>
+        <button class="no">NO</button>
+        -->
+        <!-- EXO 3 & BONUS-->
+        <p>Liste de courses</p>
+        <input type="text" placeholder="Entrez un produit" class="name">
+        <button class="ok">OK</button>
+    </div>
+
+    <script>
+        /* EXO 1: compteur = créer un compteur de clic
+        let count = 0;
+        const clic = document.querySelector(".Exo1");
+        clic.addEventListener("click",()=>{
+            count ++;
+            clic.textContent = count;
+        })
+        */
+        
+        /*// EXO 2: Sondage = On peut cliquer sur deux boutons, et il faut compter le nbre de clics sur chacun d'eux.
+        let countYes = 0;
+        let countNo = 0;
+        const sayYes = document.querySelector(".yes")
+        const sayNo = document.querySelector(".no")
+     
+        sayYes.addEventListener("click",()=>{
+            countYes ++;
+            sayYes.textContent = `YES (${countYes})`;
+        })
+
+        sayNo.addEventListener("click",()=>{
+            countNo ++;
+            sayNo.textContent = `NO (${countNo})`;
+        })
+        */
+
+        /*// EXO 3: Liste de courses -> 1. Récupérer la valeur d'un input à la soumission / 2. Si pas de contenu, message d'erreur dans la console / 3. Si une valeur existe, on affiche le contenu dans un <ul>
+        const submitName = document.querySelector(".ok");
+        
+        submitName.addEventListener("click",(event)=>{
+            const inputTaping = document.querySelector(".name")
+            if (inputTaping.value === ""){
+                console.log('erreur')
+            } else{
+                const div = document.querySelector(".div");
+                const ul = document.createElement("ul");
+                div.appendChild(ul);
+                const li = document.createElement("li");
+                ul.appendChild(li);
+                li.innerHTML += inputTaping.value;
+            }
+        })
+        */
+
+        // BONUS: 1. Tester si la valeur est une couleur 2. Si ce n'est pas une couleur on affiche un message d'erreur 3. Si c'est une couleur, on l'ajoute au ul ET on met le li dans la couleur tapée 4. On supprime la valeur de l'input à la soumission
+
+        function validerCouleur(prop){
+            const regex1 = new RegExp("#[a-zA-Z0-9]+[a-zA-Z0-9]+[a-zA-Z0-9]");
+            const regex2 = new RegExp("#[a-zA-Z0-9]+[a-zA-Z0-9]+[a-zA-Z0-9]+[a-zA-Z0-9]+[a-zA-Z0-9]+[a-zA-Z0-9]");
+            if (!regex1.test(prop) && !regex2.test(prop)){
+                throw new Error ("Ceci n'est pas une couleur")
+            }
+        }
+
+
+        function displayErrorMessage(m){
+            let errorMessage = document.getElementById("displayMessage");
+            if(!errorMessage){
+                const div = document.querySelector(".div");
+                errorMessage = document.createElement("p");
+                errorMessage.id = "displayMessage";
+                div.appendChild(errorMessage);
+            }
+            errorMessage.innerHTML = m;
+        }
+        
+
+        const submitName = document.querySelector(".ok");
+
+        submitName.addEventListener("click",(event)=>{
+            const inputTaping = document.querySelector(".name")
+            const prop = inputTaping.value
+            try {
+                validerCouleur(prop)
+                const div = document.querySelector(".div")
+                const ul = document.createElement("ul")
+                div.appendChild(ul)
+                const li = document.createElement("li")
+                console.log(inputTaping.value);
+                li.style.color = inputTaping.value;
+                ul.appendChild(li)
+                li.innerHTML += inputTaping.value
+                displayErrorMessage("")
+                inputTaping.value = ""
+            } catch(e){
+                displayErrorMessage(e.message)
+            }
+            //inputTaping.value = ""
+        })
+
+
+
+
+        
+    </script>
+</body>
+
+
+</html>
